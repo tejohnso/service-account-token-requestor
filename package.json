@@ -1,0 +1,15 @@
+{
+  "name": "service-account-token-request",
+  "version": "1.0.0",
+  "description": "Requests a token from a GCP service account",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tyler Johnson <mail@tyler-johnson.ca> (http://github.com/tejohnso)",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^7.4.2"
+  }
+}
