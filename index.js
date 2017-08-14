@@ -3,19 +3,37 @@ const JWT = require("./create-jwt.js");
 
 const url = require("url").parse("https://www.googleapis.com/oauth2/v4/token");
 const method = "POST";
-const headers = {headers: {
+const headerObj = {headers: {
 "content-type": "application/x-www-form-urlencoded",
 "accept": "*/*"
 }};
 
-const requestOptions = Object.assign({}, url, {method}, headers, {rejectUnauthorized: false});
-
 const grant_type = "urn:ietf:params:oauth:grant-type:jwt-bearer";
-const assertion = JWT.create();
-const postData = require("querystring").stringify({grant_type, assertion});
+const requestOptions = Object.assign({}, url, {method}, headerObj);
 
-const req = https.request(requestOptions, (resp)=>{
-  resp.pipe(process.stdout);
-});
 
-req.end(postData, {encoding: "utf8"});
+module.exports = {
+  getToken(serviceAccountFilePath) {
+    const assertion = JWT.create(serviceAccountFilePath);
+    const postData = require("querystring").stringify({grant_type, assertion});
+    const req = https.request(requestOptions);
+
+    return new Promise((res, rej)=>{
+      req.on("response", (resp)=>{
+        let token = "";
+        resp.on("error", rej);
+        resp.on("data", data => token += data);
+        resp.on("end", ()=>{
+          try {
+            token = JSON.parse(token).access_token;
+          } catch(err) {
+            rej(err);
+          }
+          res(token);
+        });
+      });
+
+      req.end(postData);
+    });
+  }
+};
