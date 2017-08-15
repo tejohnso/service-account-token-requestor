@@ -1,7 +1,7 @@
 {
   "name": "service-account-token-requestor",
   "version": "1.0.0",
-  "description": "Requests a token from a GCP service account",
+  "description": "Requests an access token from the Google OAuth 2.0 Authorization Server",
   "main": "index.js",
   "scripts": {
     "test": "mocha --no-timeouts test"
