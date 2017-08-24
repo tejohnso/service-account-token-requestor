@@ -9,8 +9,15 @@ Acquire a [Service Account](https://console.developers.google.com/permissions/se
 const tokenRequestor = require("service-account-token-requestor");
 const path_to_service_account_file = "../private-keys/service-account.json";
 
+//promise
 tokenRequestor.getToken(path_to_service_account_file)
 .then(useTheToken);
+
+//callback
+tokenRequestor.getToken(path_to_service_account_file, (token, error)=>{
+  if (error) { return handleError(error); }
+  useTheToken(token);
+});
 ```
 
 ### Test

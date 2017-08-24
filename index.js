@@ -11,14 +11,13 @@ const headerObj = {headers: {
 const grant_type = "urn:ietf:params:oauth:grant-type:jwt-bearer";
 const requestOptions = Object.assign({}, url, {method}, headerObj);
 
-
 module.exports = {
-  getToken(serviceAccountFilePath) {
+  getToken(serviceAccountFilePath, cb) {
     const assertion = JWT.create(serviceAccountFilePath);
     const postData = require("querystring").stringify({grant_type, assertion});
     const req = https.request(requestOptions);
 
-    return new Promise((res, rej)=>{
+    const promise = new Promise((res, rej)=>{
       req.on("response", (resp)=>{
         let token = "";
         resp.on("error", rej);
@@ -31,9 +30,13 @@ module.exports = {
           }
           res(token);
         });
-      });
+      }).on("error", rej);
 
       req.end(postData);
     });
+
+    if (!cb) { return promise; }
+
+    promise.then(cb).catch(cb.bind(null, null));
   }
 };

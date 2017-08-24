@@ -1,16 +1,24 @@
 {
   "name": "service-account-token-requestor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Requests an access token from the Google OAuth 2.0 Authorization Server",
   "main": "index.js",
   "scripts": {
     "test": "mocha --no-timeouts test"
   },
-  "keywords": ["gcp", "google cloud platform", "token", "oauth"],
+  "keywords": [
+    "gcp",
+    "google cloud platform",
+    "token",
+    "oauth"
+  ],
   "author": "Tyler Johnson <mail@tyler-johnson.ca> (http://github.com/tejohnso)",
   "license": "ISC",
   "dependencies": {
-    "jsonwebtoken": "^7.4.2",
-    "mocha": "^3.5.0"
+    "jsonwebtoken": "^7.4.2"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.0",
+    "simple-mock": "^0.8.0"
   }
 }
