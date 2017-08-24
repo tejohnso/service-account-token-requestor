@@ -8,7 +8,7 @@ Then provide the path to `getToken`.
 
 ``` js
 const tokenRequestor = require("service-account-token-requestor");
-const path_to_service_account_file = "../private-keys/service-account.json";
+const path_to_service_account_file = "/home/user/private-keys/service-account.json";
 
 //returns a promise if no callback is provided
 tokenRequestor.getToken(path_to_service_account_file)
