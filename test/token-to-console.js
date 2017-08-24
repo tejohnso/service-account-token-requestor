@@ -2,8 +2,13 @@ const assert = require("assert");
 const https = require("https");
 const tokenRequestor = require("../index.js");
 const simple = require("simple-mock");
+const MISSING_FILE = "Provide path to service account file in SERVICE_ACCT_FILE environment variable.";
 
 describe("Token Request", ()=>{
+  before(()=>{
+    if (!process.env.SERVICE_ACCT_FILE) { throw Error(MISSING_FILE); }
+  });
+
   const requestMock = {
     on(evt, cb) {
       if (evt === "error") { cb(Error("mock-error"));}
