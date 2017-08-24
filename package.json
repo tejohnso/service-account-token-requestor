@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --no-timeouts test"
   },
-  "keywords": [],
+  "keywords": ["gcp", "google cloud platform", "token", "oauth"],
   "author": "Tyler Johnson <mail@tyler-johnson.ca> (http://github.com/tejohnso)",
   "license": "ISC",
   "dependencies": {
