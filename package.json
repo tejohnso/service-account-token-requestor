@@ -1,6 +1,6 @@
 {
   "name": "service-account-token-requestor",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Requests an access token from the Google OAuth 2.0 Authorization Server",
   "main": "index.js",
   "scripts": {
